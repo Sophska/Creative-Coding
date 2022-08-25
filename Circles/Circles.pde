@@ -1,11 +1,28 @@
+/* multi
+line
+comment*/
+int _screenX=0;
+int _screenY=0;
+
 void setup()
 {
+  println(_screenX);
   size(800,600);
+  _screenX=800;
+  _screenY=600;
 }
 
 void draw()
 {
-  fill(color(255,255,255,10));
-  rect(0,0,800,600);
-  circle(random(800), random(600),200);
+  noStroke();
+  fill(color(0,100,0,10));
+  rect(0,0,_screenX,_screenY);
+
+colorMode(HSB, 360, 100, 100);
+  float hue=random(60,180);
+  float sat=random(100);
+  float bright=random(80,100);
+  color randomColor =color(hue,sat,bright);
+  fill(randomColor);
+  circle(random(_screenX), random(_screenY),100);
 }
