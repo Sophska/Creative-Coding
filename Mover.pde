@@ -7,6 +7,7 @@ class Mover
   float top_acc = random(0.01,0.5);
   float top_speed = random(1,5);
   boolean live = true;
+  float dist = 0;
   
   Mover()
   {
@@ -19,8 +20,10 @@ class Mover
     if(this.live) 
     {
       noStroke();
-      fill(200);
+      colorMode(HSB, width+height, 100, 100);
+      fill(color(this.dist, 100, (1.0-(dist/600))*100));
       circle(this.pos.x, this.pos.y,10);
+      colorMode(RGB, 255, 255, 255);
     }
   }
   
@@ -30,7 +33,7 @@ class Mover
   {
     PVector mouse = new PVector(mouseX,mouseY);
     this.acc = PVector.sub(mouse,this.pos);
-    float dist = this.acc.mag();
+    this.dist = this.acc.mag();
     this.acc.normalize();
     this.acc.mult(this.top_acc);
     
@@ -54,10 +57,8 @@ class Mover
   {
     if(this.live)
     {
-      PVector mouse = new PVector (mx,my);
-      PVector buf = PVector.sub(mouse,this.pos);
-      float dist = buf.mag();
-      if(dist < 30)
+     
+      if(this.dist < 30)
       {
         this.live = false;
         counter = counter - 1;

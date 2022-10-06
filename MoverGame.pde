@@ -23,11 +23,30 @@ void draw()
     m[i].check();
     m[i].show();
   }
-   fill(color(255,100,0));
+   fill(color(255, 0, 100));
    circle(mouseX,mouseY,30);
-   hud();
+   hud2();
 }
 
+void hud2()
+{
+  PGraphics hud = createGraphics(width,height);
+  hud.beginDraw();
+  hud.translate(width/2, 10);
+  hud.fill(255);
+  hud.textAlign(CENTER);
+  hud.text(counter,0,30);
+  hud.translate(-nMover/2, 0);
+  hud.noStroke();
+  hud.fill(color(255,0,100));
+  hud.rect(0,0,counter,10,5);
+  hud.stroke(255);
+  hud.noFill();
+  hud.rect(0,0,nMover,10);
+  hud.endDraw();
+  image(hud,0,0);
+}
+  
 void hud()
 {
   translate(width/2, 10);
