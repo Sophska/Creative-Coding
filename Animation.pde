@@ -1,6 +1,6 @@
 class Animation
 {
-  PShape[] frames;
+  PImage[] frames;
   int nFrames = 0;
   int counter = 0;
   int speedcount = 0;
@@ -11,10 +11,10 @@ class Animation
   Animation(String[] files)
   {
     this.nFrames = files.length;
-    this.frames = new PShape[nFrames];
+    this.frames = new PImage[nFrames];
     for(int i = 0; i < this.nFrames; i = i + 1)
     {
-      this.frames[i]=loadShape(files[i]);
+      this.frames[i]=loadImage(files[i]);
     }
     this.w = this.frames[0].width;
     this.h = this.frames[0].height;
@@ -24,7 +24,7 @@ class Animation
   {
     
     if(this.counter > this.nFrames-1) this.counter = 0;
-    shape(frames[counter],0,0,w,h);
+    image(frames[counter],0,0,w,h);
     this.speedcount = this.speedcount+1;
     if(this.speedcount > this.speed)
     {
